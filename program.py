@@ -27,7 +27,7 @@ for i in range(0, len(data)):
         else:
             pass
 
-# program to implement gradient descent for linear regression
+# class to implement gradient descent for linear regression
 class grad_desc_LR:
     def __init__(self, x, y, m_init, b_init, alpha, num_iter):
         self.x = x                
