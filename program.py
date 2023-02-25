@@ -2,13 +2,16 @@
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+import os   # for getting file names
 
 # load and parse the replay data from the RLCS Winter Regional 2 Main Event
 # no data from OCE winter regional 2 because it had a corrupted file
-file_names = ['replays/fall1apac.json', 'replays/fall1apac.json', 'replays/fall1eur.json', 'replays/fall1mena.json', 'replays/fall1na.json', 'replays/fall1oce.json', 'replays/fall1sa.json', 'replays/fall1ssa.json', 'replays/fall2apac.json', 'replays/fall2eur.json', 'replays/fall2mena.json', 'replays/fall2na.json', 'replays/fall2oce.json', 'replays/fall2sa.json', 'replays/fall2ssa.json', 'replays/fall3apac.json', 'replays/fall3eur.json', 'replays/fall3mena.json', 'replays/fall3na.json', 'replays/fall3oce.json', 'replays/fall3sa.json', 'replays/fall3ssa.json', 'replays/winter1apac.json', 'replays/winter1eur.json', 'replays/winter1mena.json', 'replays/winter1na.json', 'replays/winter1oce.json', 'replays/winter1sa.json', 'replays/winter1ssa.json', 'replays/winter2apac.json', 'replays/winter2eur.json', 'replays/winter2mena.json', 'replays/winter2na.json', 'replays/winter2sa.json', 'replays/winter2ssa.json']
+cwd = os.getcwd()  # get current working directory
+subdir = 'replays'  # subdirectory where replay data is stored
+file_names = os.listdir(os.path.join(cwd, subdir))  # get file names
 data = []
 for file_name in file_names:
-    with open(file_name, 'r') as f:
+    with open(os.path.join(cwd, subdir, file_name), 'r') as f:
         json_data = json.load(f)
         data.append(json_data)
 
