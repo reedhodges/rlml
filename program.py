@@ -16,11 +16,8 @@ for file_name in file_names:
         json_data = json.load(f)
         data.append(json_data)
 
-# win percentage
 win_percentage = []
-# demos inflicted per game
 demos_inflicted_per_game = []
-# boost stolen
 boost_stolen = []
 for i in range(0, len(data)):
     for j in range(0, len(data[i]["teams"])):
