@@ -15,9 +15,8 @@ class grad_desc_LR:
             # update slope and intercept using previous values, so need temporary variables
             # initialize sums to 0
             [sum_m, sum_b] = [0, 0]
-            for j in range(len(self.x)):
-                sum_m += self.x[j] * (m * self.x[j] + b - self.y[j])
-                sum_b += m * self.x[j] + b - self.y[j]
+            sum_m = sum([self.x[j] * (m * self.x[j] + b - self.y[j]) for j in range(len(self.x))])
+            sum_b = sum([m * self.x[j] + b - self.y[j] for j in range(len(self.x))])
             # update slope and intercept using previous values, so need temporary variables
             m_tmp = m - (self.alpha * sum_m) / len(self.x)
             b_tmp = b - (self.alpha * sum_b) / len(self.x)
