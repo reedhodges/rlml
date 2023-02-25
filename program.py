@@ -3,6 +3,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 import os   # for getting file names
+from gradient_descent import grad_desc_LR   
 
 # load and parse the replay data from the RLCS Winter Regional 2 Main Event
 # no data from OCE winter regional 2 because it had a corrupted file
@@ -29,32 +30,6 @@ for i in range(0, len(data)):
             boost_stolen.append(data[i]["teams"][j]["game_average"]["boost"]["amount_stolen"])
         else:
             pass
-
-# class to implement gradient descent for linear regression
-class grad_desc_LR:
-    def __init__(self, x, y, m_init, b_init, alpha, num_iter):
-        self.x = x                
-        self.y = y
-        self.m_init = m_init          # initial slope
-        self.b_init = b_init          # initial intercept
-        self.alpha = alpha          # learning rate
-        self.num_iter = num_iter    # number of iterations
-
-    def slopeintercept(self):
-        m = self.m_init
-        b = self.b_init
-        for i in range(self.num_iter):
-            # update slope and intercept using previous values, so need temporary variables
-            # initialize sums to 0
-            [sum_m, sum_b] = [0, 0]
-            for j in range(len(self.x)):
-                sum_m += self.x[j] * (m * self.x[j] + b - self.y[j])
-                sum_b += m * self.x[j] + b - self.y[j]
-            # update slope and intercept using previous values, so need temporary variables
-            m_tmp = m - (self.alpha * sum_m) / len(self.x)
-            b_tmp = b - (self.alpha * sum_b) / len(self.x)
-            [m, b] = [m_tmp, b_tmp]
-        return [m, b]
 
 # fit data to linear regression model
 # rescaled values of boost stolen to be between 0 and 100 to match win percentage
